@@ -17,19 +17,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:background="#CC1A1A">
+            android:background="#8BFF9595">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/add_recipe_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/add_24"
-                android:layout_alignBottom="@+id/scrollView"
-                android:layout_alignRight="@+id/scrollView"
-                app:backgroundTint="#2196F3"
-                android:layout_margin="10dp"
-                app:borderWidth="3dp" />
+        <Button
+            android:id="@+id/add_recipe_btn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignRight="@+id/scrollView"
+            android:layout_alignBottom="@+id/scrollView"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/add_button_design"
+            android:text="+"
+            android:textSize="30dp" />
     </RelativeLayout>
 </LinearLayout>
