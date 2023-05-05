@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".show_all_recipes_fregment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:background="#CC1A1A">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/add_recipe_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/add_24"
+                android:layout_alignBottom="@+id/scrollView"
+                android:layout_alignRight="@+id/scrollView"
+                app:backgroundTint="#2196F3"
+                android:layout_margin="10dp"
+                app:borderWidth="3dp" />
+    </RelativeLayout>
+</LinearLayout>
