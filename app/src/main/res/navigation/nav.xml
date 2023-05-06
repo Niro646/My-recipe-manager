@@ -7,16 +7,16 @@
 
     <fragment
         android:id="@+id/show_all_recipes_fregment"
-        android:name="com.example.asdasdad.show_all_recipes_fregment"
+        android:name="com.example.asdasdad.ShowAllRecipesFregment"
         android:label="fragment_show_all_recipes_fregment"
-        tools:layout="@layout/fragment_show_all_recipes_fregment" >
+        tools:layout="@layout/fragment_show_all_recipes" >
         <action
             android:id="@+id/action_show_all_recipes_fregment_to_add_recipe"
             app:destination="@id/add_recipe" />
     </fragment>
     <fragment
         android:id="@+id/add_recipe"
-        android:name="com.example.asdasdad.add_recipe"
+        android:name="com.example.asdasdad.UploadRecipe"
         android:label="fragment_add_recipe"
-        tools:layout="@layout/fragment_add_recipe" />
+        tools:layout="@layout/fragment_upload_recipe" />
 </navigation>

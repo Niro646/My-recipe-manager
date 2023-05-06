@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:layout="@layout/fragment_show_all_recipes_fregment"
+        tools:layout="@layout/fragment_show_all_recipes"
         app:navGraph="@navigation/nav" />
 
 </LinearLayout>

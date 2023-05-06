@@ -11,12 +11,37 @@
 
 
 
-        <ImageView
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:background="@drawable/food2"
-            android:scaleType="centerCrop"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+
+            <ImageView
+                android:id="@+id/recipe_image"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@drawable/food2"
+                android:scaleType="centerCrop" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/recipe_image"
+                android:layout_alignBottom="@+id/recipe_image"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="0dp"
+                android:backgroundTint="#70273333">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/vigen3"
+                    android:scaleType="fitEnd"
+                    android:radius="500dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
