@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link show_all_recipes_fregment#newInstance} factory method to
@@ -60,15 +62,18 @@ public class show_all_recipes_fregment extends Fragment {
 
     }
 
+
+    FloatingActionButton addRecipeBtn;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewF = inflater.inflate(R.layout.fragment_show_all_recipes_fregment,container,false);
 
-        Button equalBtn = viewF.findViewById(R.id.add_recipe_btn);
+        addRecipeBtn = viewF.findViewById(R.id.add_recipe_btn);
 
-        equalBtn.setOnClickListener(new View.OnClickListener() {
+        addRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View v) {
