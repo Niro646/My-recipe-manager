@@ -34,7 +34,7 @@
                 android:textSize="30dp" />
 
             <ImageView
-                android:id="@+id/upload_image"
+                android:id="@+id/uploadImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/upload_recipe_name"
+                android:id="@+id/uploadName"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
@@ -59,7 +59,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/upload_recipe_ingredients"
+                android:id="@+id/uploadIngredients"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
@@ -73,7 +73,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/upload_recipe_description"
+                android:id="@+id/uploadDescription"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
@@ -86,7 +86,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/upload_recipe_difficulty_level"
+                android:id="@+id/uploadDifficulty"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
@@ -116,7 +116,7 @@
 
 
                 <NumberPicker
-                    android:id="@+id/hour_picker"
+                    android:id="@+id/uploadHour"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
@@ -133,11 +133,11 @@
                     android:layout_marginLeft="5dp"/>
 
                 <NumberPicker
-                    android:id="@+id/mint_picker"
+                    android:id="@+id/uploadMint"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
-                    android:outlineSpotShadowColor="@color/lavender"/>
+                    android:outlineSpotShadowColor="@color/lavender" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/recipe_vegan_radioButton"
+                    android:id="@+id/uploadIsVegan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -167,7 +167,7 @@
                     android:buttonTint="@color/lavender"/>
 
                 <RadioButton
-                    android:id="@+id/recipe_vegetarian_radioButton"
+                    android:id="@+id/uploadIsVegetarian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -179,7 +179,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/recipe_save_button"
+                android:id="@+id/saveButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
