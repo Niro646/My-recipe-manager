@@ -3,11 +3,12 @@
 
     <corners
         android:radius="30dp"
-        android:drawable="@drawable/add_24"
         />
 
-
-    <solid android:color="@color/lavender"/>
+    <stroke
+        android:color="@color/lavender"
+        android:width="2dp"
+        />
 
 
 </shape>

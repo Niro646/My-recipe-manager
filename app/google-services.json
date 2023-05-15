@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "9663066781",
+    "firebase_url": "https://recipe-aad3b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "recipe-aad3b",
+    "storage_bucket": "recipe-aad3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9663066781:android:3528bb6505c24fb1189a74",
+        "android_client_info": {
+          "package_name": "com.example.asdasdad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9663066781-t9r6p06vp7oc8c4h1is0j886s2oguljk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM3C08mCyxtikBQP-YoJ-oAog2xYo829o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9663066781-t9r6p06vp7oc8c4h1is0j886s2oguljk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

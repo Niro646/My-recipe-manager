@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DetailFragment"
+    android:id="@+id/id_detail_fragment"
+    android:tag="tagDetailFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/lavender_border"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/food2"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/detail_image"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/detail_image"
+                    android:layout_alignBottom="@+id/detail_image"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#70273333">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/vigen3"
+                    android:scaleType="fitEnd"
+                    android:radius="500dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="235dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:text="Name Recipe"
+                    android:id="@+id/detaile_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:textSize="20dp"
+                    android:text="hard"
+                    android:id="@+id/detail_difficulty_level" />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:text="Preparation time: 1h and 35 mint"
+                android:id="@+id/detail_preparation_time"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:text="Ingredients:"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="tometo\ncarrot\npassta\nmilke"
+                android:id="@+id/detail_ingredients" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Instructions"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:text="Preheat the oven to 180°C and grease a 20cm cake tin.
+Break the chocolate into pieces and melt it together with the butter in a bowl over a pan of simmering water.
+In a separate bowl, whisk together the eggs and sugar until pale and fluffy.
+Fold in the chocolate mixture until fully combined.
+Sift in the flour and baking powder and fold gently until just combined.
+Pour the batter into the prepared tin and smooth the top with a spatula.
+Bake for 30-35 minutes, or until a toothpick inserted into the center of the cake comes out clean.
+Allow the cake to cool in the tin for 10 minutes before turning out onto a wire rack to cool completely.
+Serve the cake on its own or with your favorite toppings, such as whipped cream or fresh berries. Enjoy!"
+                android:id="@+id/detail_instructions" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</ScrollView>
