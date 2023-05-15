@@ -232,11 +232,11 @@ public class UploadRecipe extends Fragment {
         String ingredients = uploadIngredients.getText().toString();
         String description = uploadDescription.getText().toString();
         String difficulty = uploadDifficulty.getText().toString();
-        String preparationTime = uploadHour.getValue() + "h and " + uploadMint.getValue() + " mint.";
+        String preparationTime = uploadHour.getValue() + "h & " + uploadMint.getValue() + "m";
         Boolean vegan = uploadVegan.isChecked();
         Boolean vegetarian = uploadVegetarian.isChecked();
 
-        DataClass dataClass = new DataClass(imageURL,name,ingredients,description,difficulty,preparationTime,vegan,vegetarian);
+        DataClass dataClass = new DataClass(imageURL,name,ingredients,description,difficulty,preparationTime);
 
         DatabaseReference mDatabase;
 

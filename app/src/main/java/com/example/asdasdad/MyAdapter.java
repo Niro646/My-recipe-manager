@@ -1,9 +1,6 @@
 package com.example.asdasdad;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +13,7 @@ import androidx.cardview.widget.CardView;
 
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
@@ -30,13 +29,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private Context context;
     private List<DataClass> dataList;
     View viewF;
-    Fragment currentFragment;
+    FragmentManager fragmentManager;
 
-    public MyAdapter(Context context, List<DataClass> dataList, View viewF,Fragment currentFragment) {
+    public MyAdapter(Context context, List<DataClass> dataList, View viewF,FragmentManager fragmentManager) {
         this.context = context;
         this.dataList = dataList;
         this.viewF = viewF;
-        this.currentFragment = currentFragment;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -63,11 +62,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 args.putString("recipeImage", dataList.get(holder.getAdapterPosition()).getDataImage());
                 args.putString("recipeName", dataList.get(holder.getAdapterPosition()).getDataName());
                 args.putString("recipeIngredients", dataList.get(holder.getAdapterPosition()).getDataIngredients());
-                args.putString("recipeInstructions", dataList.get(holder.getAdapterPosition()).getDataImage());
+                args.putString("recipeInstructions", dataList.get(holder.getAdapterPosition()).getDataDescription());
                 args.putString("recipeDifficulty", dataList.get(holder.getAdapterPosition()).getDataDifficultyLevel());
                 args.putString("recipePreparationTime", dataList.get(holder.getAdapterPosition()).getDataPreparationTime());
 
-                currentFragment.setArguments(args);
+
+                fragmentManager.setFragmentResult("requestKey", args);
+
+                //fragmentManager.setArguments(args);
 
                 Navigation.findNavController(viewF).navigate(R.id.action_show_all_recipes_fregment_to_detailFragment);
 
@@ -79,6 +81,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public int getItemCount() {
         return dataList.size();
+    }
+
+    public void searchDataList(ArrayList<DataClass> searchList){
+        dataList = searchList;
+        notifyDataSetChanged();
     }
 }
 

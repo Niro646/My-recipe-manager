@@ -7,20 +7,20 @@ public class DataClass {
     public String dataDescription;
     public String dataDifficultyLevel;
     public String dataPreparationTime;
-    public Boolean dataVegan;
-    public Boolean dataVegetarian;
+    //public Boolean dataVegan;
+   // public Boolean dataVegetarian;
 
 
 
-    public DataClass(String dataImage, String dataName, String dataIngredients, String dataDescription, String dataDifficultyLevel, String dataPreparationTime, Boolean dataVegan, Boolean dataVegetarian) {
+    public DataClass(String dataImage, String dataName, String dataIngredients, String dataDescription, String dataDifficultyLevel, String dataPreparationTime) {
         this.dataImage = dataImage;
         this.dataName = dataName;
         this.dataIngredients = dataIngredients;
         this.dataDescription = dataDescription;
         this.dataDifficultyLevel = dataDifficultyLevel;
         this.dataPreparationTime = dataPreparationTime;
-        this.dataVegan = dataVegan;
-        this.dataVegetarian = dataVegetarian;
+        //this.dataVegan = dataVegan;
+        //this.dataVegetarian = dataVegetarian;
     }
 
     public DataClass(){}
@@ -49,11 +49,5 @@ public class DataClass {
         return dataPreparationTime;
     }
 
-    public Boolean getDataVegan() {
-        return dataVegan;
-    }
 
-    public Boolean getDataVegetarian() {
-        return dataVegetarian;
-    }
 }

@@ -2,7 +2,9 @@ package com.example.asdasdad;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,15 +79,21 @@ public class DetailFragment extends Fragment {
         detailDifficulty = viewF.findViewById(R.id.detail_difficulty_level);
         detailImage = viewF.findViewById(R.id.detail_image);
 
-        Bundle bundle = getArguments();
-        if (bundle != null){
-            detailName.setText(bundle.getString("recipeName"));
-            detailIngredients.setText(bundle.getString("recipeIngredients"));
-            detailInstructions.setText(bundle.getString("recipeInstructions"));
-            detailPreparation.setText(bundle.getString("recipePreparationTime"));
-            detailDifficulty.setText(bundle.getString("recipeDifficulty"));
-            Glide.with(this).load(bundle.getString("recipeImage")).into(detailImage);
-        }
+
+
+        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                detailName.setText(result.getString("recipeName"));
+                detailIngredients.setText(result.getString("recipeIngredients"));
+                detailInstructions.setText(result.getString("recipeInstructions"));
+                detailPreparation.setText(result.getString("recipePreparationTime"));
+                detailDifficulty.setText(result.getString("recipeDifficulty"));
+                Glide.with(getContext()).load(result.getString("recipeImage")).into(detailImage);
+            }
+        });
+
+
 
 
 

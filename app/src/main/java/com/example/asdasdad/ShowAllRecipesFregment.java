@@ -1,10 +1,10 @@
 package com.example.asdasdad;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -42,7 +42,7 @@ public class ShowAllRecipesFregment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private Fragment turgetFragment;
 
 
     public ShowAllRecipesFregment() {
@@ -83,6 +83,8 @@ public class ShowAllRecipesFregment extends Fragment {
     List<DataClass> dataList;
     DatabaseReference databaseReference;
     ValueEventListener eventListener;
+    SearchView searchView;
+    MyAdapter adapter;
 
 
 
@@ -94,6 +96,8 @@ public class ShowAllRecipesFregment extends Fragment {
 
         addRecipeBtn = viewF.findViewById(R.id.add_recipe_btn);
         recyclerView = viewF.findViewById(R.id.recyclerView);
+        searchView = viewF.findViewById(R.id.search);
+        searchView.clearFocus();
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -106,11 +110,7 @@ public class ShowAllRecipesFregment extends Fragment {
 
         dataList = new ArrayList<>();
 
-
-
-        @SuppressLint("ResourceType") Fragment currentFragment = getChildFragmentManager().findFragmentById(R.layout.fragment_show_all_recipes);
-
-        MyAdapter adapter =new MyAdapter(getContext(),dataList, viewF, currentFragment);
+        adapter =new MyAdapter(getContext(),dataList, viewF, getParentFragmentManager());
         recyclerView.setAdapter(adapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("recipe");
@@ -135,6 +135,19 @@ public class ShowAllRecipesFregment extends Fragment {
             }
         });
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchList(newText);
+                return true;
+            }
+        });
+
         addRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -144,5 +157,15 @@ public class ShowAllRecipesFregment extends Fragment {
             }
         });
         return viewF;
+    }
+
+    public void searchList(String text){
+        ArrayList<DataClass> searchList = new ArrayList<>();
+        for (DataClass dataClass:dataList){
+            if(dataClass.getDataIngredients().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(dataClass);
+            }
+        }
+        adapter.searchDataList(searchList);
     }
 }

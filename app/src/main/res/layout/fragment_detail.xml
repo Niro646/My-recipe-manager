@@ -4,14 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DetailFragment">
+    tools:context=".DetailFragment"
+    android:id="@+id/id_detail_fragment"
+    android:tag="tagDetailFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/lavender_border"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
@@ -23,12 +25,37 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/food2"
-                android:scaleType="centerCrop"
-                android:id="@+id/detail_image"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/food2"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/detail_image"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/detail_image"
+                    android:layout_alignBottom="@+id/detail_image"
+                    app:cardCornerRadius="50dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="#70273333">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/vigen3"
+                    android:scaleType="fitEnd"
+                    android:radius="500dp"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +64,7 @@
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:layout_width="245dp"
+                    android:layout_width="235dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:textStyle="bold"
@@ -48,7 +75,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textStyle="bold"
                     android:gravity="bottom"
                     android:textSize="20dp"
                     android:text="hard"
