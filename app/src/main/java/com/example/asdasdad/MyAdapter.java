@@ -65,6 +65,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 args.putString("recipeInstructions", dataList.get(holder.getAdapterPosition()).getDataDescription());
                 args.putString("recipeDifficulty", dataList.get(holder.getAdapterPosition()).getDataDifficultyLevel());
                 args.putString("recipePreparationTime", dataList.get(holder.getAdapterPosition()).getDataPreparationTime());
+                args.putString("key", dataList.get(holder.getAdapterPosition()).getKey());
 
 
                 fragmentManager.setFragmentResult("requestKey", args);

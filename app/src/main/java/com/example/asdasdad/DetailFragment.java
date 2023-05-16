@@ -5,14 +5,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.clans.fab.FloatingActionButton;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +73,10 @@ public class DetailFragment extends Fragment {
     ImageView detailImage;
     TextView detailName, detailIngredients, detailInstructions;
     TextView detailPreparation, detailDifficulty;
+    FloatingActionButton deleteButton;
+    String key = "";
+    String imageUrl = "";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +91,8 @@ public class DetailFragment extends Fragment {
         detailDifficulty = viewF.findViewById(R.id.detail_difficulty_level);
         detailImage = viewF.findViewById(R.id.detail_image);
 
+        deleteButton = viewF.findViewById(R.id.deleteButton);
+
 
 
         getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
@@ -89,11 +103,29 @@ public class DetailFragment extends Fragment {
                 detailInstructions.setText(result.getString("recipeInstructions"));
                 detailPreparation.setText(result.getString("recipePreparationTime"));
                 detailDifficulty.setText(result.getString("recipeDifficulty"));
+                key = result.getString("key");
+                imageUrl = result.getString("recipeImage");
                 Glide.with(getContext()).load(result.getString("recipeImage")).into(detailImage);
             }
         });
 
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("recipe");
+                FirebaseStorage storage = FirebaseStorage.getInstance();
 
+                StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
+                storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        reference.child(key).removeValue();
+                        Toast.makeText(getContext(), "Delete", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(viewF).navigate(R.id.action_detailFragment_to_show_all_recipes_fregment);
+                    }
+                });
+            }
+        });
 
 
 

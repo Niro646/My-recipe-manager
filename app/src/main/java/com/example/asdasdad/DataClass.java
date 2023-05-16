@@ -7,9 +7,10 @@ public class DataClass {
     public String dataDescription;
     public String dataDifficultyLevel;
     public String dataPreparationTime;
+
+    private  String key;
     //public Boolean dataVegan;
    // public Boolean dataVegetarian;
-
 
 
     public DataClass(String dataImage, String dataName, String dataIngredients, String dataDescription, String dataDifficultyLevel, String dataPreparationTime) {
@@ -48,6 +49,15 @@ public class DataClass {
     public String getDataPreparationTime() {
         return dataPreparationTime;
     }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
 
 
 }
