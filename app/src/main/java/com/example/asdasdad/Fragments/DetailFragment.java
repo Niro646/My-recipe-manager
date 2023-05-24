@@ -1,12 +1,14 @@
-package com.example.asdasdad;
+package com.example.asdasdad.Fragments;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.asdasdad.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -92,6 +95,18 @@ public class DetailFragment extends Fragment {
         detailImage = viewF.findViewById(R.id.detail_image);
 
         deleteButton = viewF.findViewById(R.id.deleteButton);
+
+
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+                Log.d("result" , "yes");
+                Navigation.findNavController(viewF).navigate(R.id.action_detailFragment_to_show_all_recipes_fregment);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getActivity(), callback);
 
 
 
