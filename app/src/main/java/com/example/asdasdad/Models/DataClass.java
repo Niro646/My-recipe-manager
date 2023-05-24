@@ -1,4 +1,4 @@
-package com.example.asdasdad;
+package com.example.asdasdad.Models;
 
 public class DataClass {
     public String dataImage;

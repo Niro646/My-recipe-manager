@@ -1,4 +1,4 @@
-package com.example.asdasdad;
+package com.example.asdasdad.Fragments;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,8 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+
+import com.example.asdasdad.Models.DataClass;
+import com.example.asdasdad.MyAdapter;
+import com.example.asdasdad.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -85,6 +89,7 @@ public class ShowAllRecipesFregment extends Fragment {
     ValueEventListener eventListener;
     SearchView searchView;
     MyAdapter adapter;
+    ImageButton apiBtn;
 
 
 
@@ -98,6 +103,8 @@ public class ShowAllRecipesFregment extends Fragment {
         recyclerView = viewF.findViewById(R.id.recyclerView);
         searchView = viewF.findViewById(R.id.search);
         searchView.clearFocus();
+
+        apiBtn =viewF.findViewById(R.id.api_btn);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -149,6 +156,9 @@ public class ShowAllRecipesFregment extends Fragment {
             }
         });
 
+
+
+
         addRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -157,6 +167,16 @@ public class ShowAllRecipesFregment extends Fragment {
 
             }
         });
+
+        apiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Navigation.findNavController(viewF).navigate(R.id.action_show_all_recipes_fregment_to_show_api_recipeFragment);
+
+            }
+        });
+
         return viewF;
     }
 
