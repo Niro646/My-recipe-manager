@@ -53,6 +53,9 @@
             app:exitAnim="@anim/to_right"
             app:popUpTo="@id/show_all_recipes_fregment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
         android:id="@+id/show_api_recipeFragment"
@@ -75,5 +78,14 @@
         <action
             android:id="@+id/action_detailApi_to_show_api_recipeFragment"
             app:destination="@id/show_api_recipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.example.asdasdad.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_show_all_recipes_fregment"
+            app:destination="@id/show_all_recipes_fregment" />
     </fragment>
 </navigation>

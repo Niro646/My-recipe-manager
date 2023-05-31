@@ -1,4 +1,4 @@
-package com.example.asdasdad;
+package com.example.asdasdad.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,29 +10,25 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-
-
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-
 import com.bumptech.glide.Glide;
+import com.example.asdasdad.Models.ApiObject;
 import com.example.asdasdad.Models.DataClass;
+import com.example.asdasdad.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-
+public class MyAdapterFavorite extends RecyclerView.Adapter<MyViewHolderFavorite>{
     private Context context;
-    private List<DataClass> dataList;
+    private ArrayList<DataClass> dataList;
+
     View viewF;
     FragmentManager fragmentManager;
 
-    public MyAdapter(Context context, List<DataClass> dataList, View viewF,FragmentManager fragmentManager) {
+    public MyAdapterFavorite(Context context, ArrayList<DataClass> dataList, View viewF, FragmentManager fragmentManager) {
         this.context = context;
         this.dataList = dataList;
         this.viewF = viewF;
@@ -41,20 +37,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolderFavorite onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_recipe, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolderFavorite(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Glide.with(context).load(dataList.get(position).getDataImage()).into(holder.recipeImage);
-        holder.recipeName.setText(dataList.get(position).getDataName());
-        holder.recipeDescription.setText(dataList.get(position).getDataDescription());
-        holder.recipeDifficulty.setText(dataList.get(position).getDataDifficultyLevel());
-        holder.recipePreparationTime.setText(dataList.get(position).getDataPreparationTime());
+    public void onBindViewHolder(@NonNull MyViewHolderFavorite holder, int position) {
+        DataClass currentRecipe = dataList.get(position);
 
-
+        holder.recipeName.setText(currentRecipe.getDataName());
+        holder.recipeDifficulty.setText(currentRecipe.getDataDifficultyLevel());
+        holder.recipeDescription.setText(currentRecipe.getDataDescription());
+        holder.recipePreparationTime.setText(currentRecipe.getDataPreparationTime());
+        Glide.with(context).load(currentRecipe.getDataImage()).into(holder.recipeImage);
 
         holder.recipeCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,36 +67,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 
                 fragmentManager.setFragmentResult("requestKey", args);
-
-                //fragmentManager.setArguments(args);
-
                 Navigation.findNavController(viewF).navigate(R.id.action_show_all_recipes_fregment_to_detailFragment);
 
             }
         });
+    }
 
+    public void searchDataList(ArrayList<DataClass> searchList) {
+        dataList = searchList;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
         return dataList.size();
     }
-
-    public void searchDataList(ArrayList<DataClass> searchList){
-        dataList = searchList;
-        notifyDataSetChanged();
-    }
 }
 
-class MyViewHolder extends RecyclerView.ViewHolder{
-
+class MyViewHolderFavorite extends RecyclerView.ViewHolder{
     ImageView recipeImage;
     TextView recipeName, recipeIngredients, recipeDifficulty, recipeDescription, recipePreparationTime;
 
     CardView recipeCard;
 
-
-    public MyViewHolder(@NonNull View itemView) {
+    public MyViewHolderFavorite(@NonNull View itemView) {
         super(itemView);
 
         recipeImage = itemView.findViewById(R.id.recipe_image);
@@ -109,6 +99,5 @@ class MyViewHolder extends RecyclerView.ViewHolder{
         recipeName = itemView.findViewById(R.id.recipe_name);
         recipePreparationTime = itemView.findViewById(R.id.recipe_preparation_time);
         recipeCard = itemView.findViewById(R.id.recipe_card);
-
     }
 }

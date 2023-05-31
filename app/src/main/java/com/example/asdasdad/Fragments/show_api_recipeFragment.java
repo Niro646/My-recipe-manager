@@ -96,6 +96,7 @@ public class show_api_recipeFragment extends Fragment {
         View viewF = inflater.inflate(R.layout.fragment_show_api_recipe,container,false);
 
 
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
