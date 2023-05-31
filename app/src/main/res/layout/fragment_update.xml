@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="390dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".UpdateFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/lavender_border"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Update Data"
+                android:textColor="@color/lavender"
+                android:textSize="30dp" />
+
+            <ImageView
+                android:id="@+id/updateImage"
+                android:layout_width="250dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/uploadimg" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateName"
+                android:background="@drawable/lavender_border"
+                android:textColor="@color/lavender"
+                android:textColorHint="@color/lavender"
+                android:textSize="18dp"
+                android:padding="16dp"
+                android:layout_marginTop="20dp"
+                android:hint="Update Recipe Name"
+                android:gravity="start|center_vertical"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateIngredients"
+                android:background="@drawable/lavender_border"
+                android:textColor="@color/lavender"
+                android:textColorHint="@color/lavender"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:hint="Update Recipe Ingredients"
+                android:gravity="start|center_vertical"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateDescription"
+                android:background="@drawable/lavender_border"
+                android:textColor="@color/lavender"
+                android:textColorHint="@color/lavender"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:hint="Update Recipe Description"
+                android:gravity="start|center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateDifficulty"
+                android:background="@drawable/lavender_border"
+                android:textColor="@color/lavender"
+                android:textColorHint="@color/lavender"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:padding="16dp"
+                android:hint="Update Recipe Difficulty"
+                android:gravity="start|center_vertical"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lavender_border"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Time:"
+                    android:textSize="18dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:textColor="@color/lavender"/>
+
+
+                <NumberPicker
+                    android:id="@+id/updateHour"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:outlineSpotShadowColor="@color/lavender"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="h"
+                    android:textSize="18dp"
+                    android:textColor="@color/lavender"
+                    android:gravity="center"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"/>
+
+                <NumberPicker
+                    android:id="@+id/updateMint"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:outlineSpotShadowColor="@color/lavender" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="m"
+                    android:textSize="18dp"
+                    android:textColor="@color/lavender"
+                    android:gravity="center"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/uploadIsVegan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Vegan"
+                    android:textSize="18dp"
+                    android:textColor="@color/lavender"
+                    android:buttonTint="@color/lavender"/>
+
+                <RadioButton
+                    android:id="@+id/uploadIsVegetarian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Vegetarian"
+                    android:textSize="18dp"
+                    android:textColor="@color/lavender"
+                    android:buttonTint="@color/lavender"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/add_button_design"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</ScrollView>

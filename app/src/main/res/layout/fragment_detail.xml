@@ -145,6 +145,7 @@
 
 
     <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -157,6 +158,24 @@
         app:menu_icon="@drawable/baseline_format_list_bulleted_24"
         app:menu_openDirection="up"
         app:menu_showShadow="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/favoriteButton"
+            android:src="@drawable/baseline_favorite_border_red_24"
+            app:fab_showShadow="true"
+            app:fab_colorNormal="@color/white"
+            app:fab_size="mini"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editButton"
+            android:src="@drawable/baseline_edit_24"
+            app:fab_showShadow="true"
+            app:fab_colorNormal="@color/green"
+            app:fab_size="mini"/>
         
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"

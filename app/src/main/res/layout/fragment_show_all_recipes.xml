@@ -48,7 +48,7 @@
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/fevorit"
+                android:id="@+id/favorite"
                 android:background="@color/lavender"
                 android:src="@drawable/baseline_favorite_border_24" />
         </androidx.cardview.widget.CardView>

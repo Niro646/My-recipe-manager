@@ -53,7 +53,7 @@ public class MyAdapterApi extends RecyclerView.Adapter<MyViewHolderApi> {
 
         ApiObject currentRecipe = dataList.get(position);
 
-        String s = "";
+        //String s = "";
 
         holder.recipeName.setText(currentRecipe.getDataName());
         holder.recipeDescription.setText(currentRecipe.getDataInstructions());

@@ -1,5 +1,9 @@
 package com.example.asdasdad.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -17,20 +21,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.asdasdad.Models.DataClass;
 import com.example.asdasdad.R;
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DetailFragment extends Fragment {
+public class DetailFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,9 +87,11 @@ public class DetailFragment extends Fragment {
     ImageView detailImage;
     TextView detailName, detailIngredients, detailInstructions;
     TextView detailPreparation, detailDifficulty;
-    FloatingActionButton deleteButton;
+    FloatingActionMenu menuBtn;
+    FloatingActionButton deleteButton, editButton, favoriteButton;
     String key = "";
     String imageUrl = "";
+    Boolean currentRecipeIsFavorite;
 
 
     @Override
@@ -94,7 +107,14 @@ public class DetailFragment extends Fragment {
         detailDifficulty = viewF.findViewById(R.id.detail_difficulty_level);
         detailImage = viewF.findViewById(R.id.detail_image);
 
+        menuBtn = viewF.findViewById(R.id.menuButton);
         deleteButton = viewF.findViewById(R.id.deleteButton);
+        editButton = viewF.findViewById(R.id.editButton);
+        favoriteButton = viewF.findViewById(R.id.favoriteButton);
+
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
+
 
 
 
@@ -121,8 +141,15 @@ public class DetailFragment extends Fragment {
                 key = result.getString("key");
                 imageUrl = result.getString("recipeImage");
                 Glide.with(getContext()).load(result.getString("recipeImage")).into(detailImage);
+
+                currentRecipeIsFavorite = isFavorite(detailName.getText().toString(),sharedPref);
+                if(currentRecipeIsFavorite){
+                    favoriteButton.setImageDrawable(getResources().getDrawable(R.drawable.baseline_favorite_24));
+                }
             }
         });
+
+
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,8 +169,97 @@ public class DetailFragment extends Fragment {
             }
         });
 
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putString("recipeImage", imageUrl);
+                args.putString("recipeName", detailName.getText().toString());
+                args.putString("recipeIngredients", detailIngredients.getText().toString());
+                args.putString("recipeInstructions", detailInstructions.getText().toString());
+                args.putString("recipeDifficulty", detailDifficulty.getText().toString());
+                args.putString("recipePreparationTime", detailPreparation.getText().toString());
+                args.putString("key", key);
+                //args.putString("Language", dataList.get(holder.getAdapterPosition()).getDataL);
 
+
+                getParentFragmentManager().setFragmentResult("updateRequestKey", args);
+
+                //fragmentManager.setArguments(args);
+
+                Navigation.findNavController(viewF).navigate(R.id.action_detailFragment_to_updateFragment);
+            }
+        });
+
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menuBtn.close(true);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                Map<String, ?> allEntries = sharedPref.getAll();
+
+                if (currentRecipeIsFavorite){
+                    currentRecipeIsFavorite = false;
+                    favoriteButton.setImageDrawable(getResources().getDrawable(R.drawable.baseline_favorite_border_red_24));
+
+                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                        entry.getValue();
+                        try {
+                            JSONObject jsonObj = new JSONObject(entry.getValue().toString());
+                            if (jsonObj.getString("recipeName").equals(detailName.getText().toString())){
+                                editor.remove(entry.getKey());
+                                editor.apply();
+                            }
+
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+                else {
+                    currentRecipeIsFavorite = true;
+                    favoriteButton.setImageDrawable(getResources().getDrawable(R.drawable.baseline_favorite_24));
+
+                    int allEntriesSize = allEntries.size();
+
+                    String jasonString = "{\"recipeName\":" + "\"" + detailName.getText().toString() + "\"" +
+                            ",\"recipeImage\":" + "\"" + imageUrl + "\"" +
+                            ",\"recipeIngredients\":" + "\"" + detailIngredients.getText().toString() + "\"" +
+                            ",\"recipeInstructions\":" + "\"" + detailInstructions.getText().toString() + "\"" +
+                            ",\"recipeDifficulty\":" + "\"" + detailDifficulty.getText().toString() + "\"" +
+                            ",\"recipePreparationTime\":" + "\"" + detailPreparation.getText().toString() + "\"" + "}";
+
+                    editor.putString(Integer.toString(allEntriesSize + 1), jasonString);
+                    editor.apply();
+                }
+            }
+        });
 
         return viewF;
+    }
+
+    public boolean isFavorite(String recipeName, @NonNull SharedPreferences sharedPref){
+        Map<String, ?> allEntries = sharedPref.getAll();
+
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            entry.getValue();
+            try {
+                JSONObject jsonObj = new JSONObject(entry.getValue().toString());
+                if (jsonObj.getString("recipeName").equals(recipeName)){
+                    return true;
+                }
+
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getContext(), "screan click", Toast.LENGTH_SHORT).show();
+
     }
 }
