@@ -1,4 +1,9 @@
-# 
+# This is an app to manage my recipes which interfaces with firebase.
+which allows:
+* Save personal recipes.
+* Mark the redundant recipes.
+* Save them locally.
+* In addition, interfaces with an external API.
 <table>
   <tr>
     <th>The main screen that displays the information</th>
