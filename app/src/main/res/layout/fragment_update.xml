@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".Fragments.UploadRecipe">
+    tools:context=".UpdateFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,12 +27,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Upload Data"
+                android:text="Update Data"
                 android:textColor="@color/lavender"
                 android:textSize="30dp" />
 
             <ImageView
-                android:id="@+id/uploadImage"
+                android:id="@+id/updateImage"
                 android:layout_width="250dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -41,56 +41,56 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/uploadName"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateName"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
                 android:textSize="18dp"
                 android:padding="16dp"
                 android:layout_marginTop="20dp"
-                android:hint="Enter Recipe Name"
+                android:hint="Update Recipe Name"
                 android:gravity="start|center_vertical"/>
 
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/uploadIngredients"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateIngredients"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
                 android:textSize="18dp"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter Recipe Ingredients"
+                android:hint="Update Recipe Ingredients"
                 android:gravity="start|center_vertical"/>
 
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/uploadDescription"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateDescription"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
                 android:textSize="18dp"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter Recipe Description"
+                android:hint="Update Recipe Description"
                 android:gravity="start|center_vertical"/>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/uploadDifficulty"
+                android:layout_height="wrap_content"
+                android:id="@+id/updateDifficulty"
                 android:background="@drawable/lavender_border"
                 android:textColor="@color/lavender"
                 android:textColorHint="@color/lavender"
                 android:textSize="18dp"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter Recipe Difficulty"
+                android:hint="Update Recipe Difficulty"
                 android:gravity="start|center_vertical"/>
 
 
@@ -113,7 +113,7 @@
 
 
                 <NumberPicker
-                    android:id="@+id/uploadHour"
+                    android:id="@+id/updateHour"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
@@ -130,7 +130,7 @@
                     android:layout_marginLeft="5dp"/>
 
                 <NumberPicker
-                    android:id="@+id/uploadMint"
+                    android:id="@+id/updateMint"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="20dp"
@@ -176,12 +176,12 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/saveButton"
+                android:id="@+id/updateButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/add_button_design"
-                android:text="Save"
+                android:text="Update"
                 android:textColor="@color/white"
                 android:textSize="18dp" />
 

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.DetailFragment"
-    android:id="@+id/id_detail_fragment"
+    tools:context=".Fragments.DetailApi"
     android:tag="tagDetailFragment">
 
     <ScrollView
@@ -29,70 +28,21 @@
                 android:background="@color/white"
                 android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:background="@drawable/food2"
-                        android:scaleType="centerCrop"
-                        android:id="@+id/detail_image"/>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignRight="@+id/detail_image"
-                        android:layout_alignBottom="@+id/detail_image"
-                        app:cardCornerRadius="50dp"
-                        app:cardElevation="0dp"
-                        android:backgroundTint="#70273333">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/vigen3"
-                        android:scaleType="fitEnd"
-                        android:radius="500dp"/>
-
-                    </androidx.cardview.widget.CardView>
-
-                </RelativeLayout>
-
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/detail_api_image"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:layout_height="180dp"
 
-                    <TextView
-                        android:layout_width="235dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textStyle="bold"
-                        android:textSize="30dp"
-                        android:text="Name Recipe"
-                        android:id="@+id/detaile_name" />
+                    android:scaleType="matrix" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="bottom"
-                        android:textSize="20dp"
-                        android:text="hard"
-                        android:id="@+id/detail_difficulty_level" />
-
-                </LinearLayout>
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20dp"
-                    android:text="Preparation time: 1h and 35 mint"
-                    android:id="@+id/detail_preparation_time"/>
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:text="Name Recipe"
+                    android:id="@+id/detaile_api_name" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -109,22 +59,21 @@
                     android:layout_marginLeft="10dp"
                     android:textSize="20dp"
                     android:text="tometo\ncarrot\npassta\nmilke"
-                    android:id="@+id/detail_ingredients" />
+                    android:id="@+id/detail_api_ingredients" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
                     android:text="Instructions"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="50dp"
                     android:textSize="20dp"
                     android:text="Preheat the oven to 180°C and grease a 20cm cake tin.
@@ -136,7 +85,7 @@
     Bake for 30-35 minutes, or until a toothpick inserted into the center of the cake comes out clean.
     Allow the cake to cool in the tin for 10 minutes before turning out onto a wire rack to cool completely.
     Serve the cake on its own or with your favorite toppings, such as whipped cream or fresh berries. Enjoy!"
-                    android:id="@+id/detail_instructions" />
+                    android:id="@+id/detail_api_instructions" />
 
             </LinearLayout>
 
@@ -145,7 +94,6 @@
 
 
     <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -162,30 +110,12 @@
         <com.github.clans.fab.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/favoriteButton"
-            android:src="@drawable/baseline_favorite_border_red_24"
-            app:fab_showShadow="true"
-            app:fab_colorNormal="@color/white"
-            app:fab_size="mini"/>
-
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editButton"
-            android:src="@drawable/baseline_edit_24"
-            app:fab_showShadow="true"
-            app:fab_colorNormal="@color/green"
-            app:fab_size="mini"/>
-        
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/deleteButton"
             android:src="@drawable/baseline_delete_24"
             app:fab_showShadow="true"
             app:fab_colorNormal="@color/red"
             app:fab_size="mini"/>
     </com.github.clans.fab.FloatingActionMenu>
-        
+
 
 </RelativeLayout>

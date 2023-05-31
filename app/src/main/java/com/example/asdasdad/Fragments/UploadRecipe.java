@@ -1,4 +1,4 @@
-package com.example.asdasdad;
+package com.example.asdasdad.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -7,16 +7,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +30,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.asdasdad.Models.DataClass;
+import com.example.asdasdad.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -86,20 +88,15 @@ public class UploadRecipe extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     ImageView uploadImage;
     EditText uploadName, uploadIngredients, uploadDescription;
-
     TextView uploadDifficulty;
     NumberPicker uploadHour, uploadMint;
     RadioButton uploadVegan, uploadVegetarian;
     Button saveButton;
-
     String imageURL;
     Uri uri;
-
     View viewF;
-
 
     @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
@@ -107,6 +104,16 @@ public class UploadRecipe extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewF = inflater.inflate(R.layout.fragment_upload_recipe,container,false);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+                Log.d("result" , "yes");
+                Navigation.findNavController(viewF).navigate(R.id.action_add_recipe_to_show_all_recipes_fregment);
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(getActivity(), callback);
 
 
         uploadImage = viewF.findViewById(R.id.uploadImage);
@@ -133,7 +140,6 @@ public class UploadRecipe extends Fragment {
         uploadHour.setTextSize(50);
         uploadMint.setTextColor(R.color.lavender);
 
-
         uploadDifficulty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +158,6 @@ public class UploadRecipe extends Fragment {
                 });
                 // Showing the popup menu
                 popupMenu.show();
-
             }
         });
 
@@ -171,7 +176,6 @@ public class UploadRecipe extends Fragment {
                     }
                 }
         );
-
 
         uploadImage.setOnClickListener(new View.OnClickListener() {
 
@@ -195,35 +199,42 @@ public class UploadRecipe extends Fragment {
     }
 
     public void saveData(){
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images")
-                .child(uri.getLastPathSegment());
+        if(uri != null && !uploadName.getText().toString().equals("") && !uploadIngredients.getText().toString().equals("")
+                && !uploadDescription.getText().toString().equals("") && !uploadDifficulty.getText().toString().equals("")){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setCancelable(false);
-        builder.setView(R.layout.progress_layout);
-        AlertDialog dialog =builder.create();
-        dialog.show();
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images")
+                    .child(uri.getLastPathSegment());
 
-        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//זה לא נכנס לכאן למרות שבדיבאג הוא מגיע לשורה הזו
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setCancelable(false);
+            builder.setView(R.layout.progress_layout);
+            AlertDialog dialog =builder.create();
+            dialog.show();
 
-                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                while (!uriTask.isComplete());
-                Uri urlImage = uriTask.getResult();
-                imageURL = urlImage.toString();
-                uploadData();
-                dialog.dismiss();
-                Navigation.findNavController(viewF).navigate(R.id.action_add_recipe_to_show_all_recipes_fregment);
-            }
-        }).addOnFailureListener(new OnFailureListener() {                                                  //וגם לא נכנס לכאן
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                dialog.dismiss();
-                Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();       //ולא לכאן אז אני גם לא יכול לראות את הדעת שגיעה
+            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {//זה לא נכנס לכאן למרות שבדיבאג הוא מגיע לשורה הזו
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-            }
-        });
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isComplete());
+                    Uri urlImage = uriTask.getResult();
+                    imageURL = urlImage.toString();
+                    uploadData();
+                    dialog.dismiss();
+                    Navigation.findNavController(viewF).navigate(R.id.action_add_recipe_to_show_all_recipes_fregment);
+                }
+            }).addOnFailureListener(new OnFailureListener() {                                                  //וגם לא נכנס לכאן
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    dialog.dismiss();
+                    Toast.makeText(getContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();       //ולא לכאן אז אני גם לא יכול לראות את הדעת שגיעה
+
+                }
+            });
+        }
+        else {
+            Toast.makeText(getContext(), "Please fill in all the fields", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void uploadData(){
@@ -237,12 +248,6 @@ public class UploadRecipe extends Fragment {
         Boolean vegetarian = uploadVegetarian.isChecked();
 
         DataClass dataClass = new DataClass(imageURL,name,ingredients,description,difficulty,preparationTime);
-
-        DatabaseReference mDatabase;
-
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        mDatabase.child("data").child("recipe").setValue(dataClass);
-
 
         FirebaseDatabase.getInstance().getReference("recipe").child(name)
                 .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {

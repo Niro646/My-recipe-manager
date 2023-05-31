@@ -1,12 +1,13 @@
-package com.example.asdasdad;
+package com.example.asdasdad.Fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -15,8 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+
+import com.example.asdasdad.Adapters.MyAdapterFavorite;
+import com.example.asdasdad.Models.ApiObject;
+import com.example.asdasdad.Models.DataClass;
+import com.example.asdasdad.MyAdapter;
+import com.example.asdasdad.R;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,8 +33,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,7 +98,10 @@ public class ShowAllRecipesFregment extends Fragment {
     ValueEventListener eventListener;
     SearchView searchView;
     MyAdapter adapter;
+    MyAdapterFavorite favoriteAdapter;
 
+    ImageButton apiBtn, favoriteBtn;
+    Boolean favoriteBtnIsPressed = false;
 
 
     @Override
@@ -98,6 +114,9 @@ public class ShowAllRecipesFregment extends Fragment {
         recyclerView = viewF.findViewById(R.id.recyclerView);
         searchView = viewF.findViewById(R.id.search);
         searchView.clearFocus();
+
+        apiBtn =viewF.findViewById(R.id.api_btn);
+        favoriteBtn =viewF.findViewById(R.id.favorite);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -149,6 +168,9 @@ public class ShowAllRecipesFregment extends Fragment {
             }
         });
 
+
+
+
         addRecipeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -157,6 +179,61 @@ public class ShowAllRecipesFregment extends Fragment {
 
             }
         });
+
+        apiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Navigation.findNavController(viewF).navigate(R.id.action_show_all_recipes_fregment_to_show_api_recipeFragment);
+
+            }
+        });
+
+        favoriteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favoriteBtnIsPressed){
+                    favoriteBtnIsPressed = false;
+                    favoriteBtn.setImageDrawable(getResources().getDrawable(R.drawable.baseline_favorite_border_24));
+                    recyclerView.setAdapter(adapter);
+                }
+                else {
+                    favoriteBtnIsPressed =true;
+                    favoriteBtn.setImageDrawable(getResources().getDrawable(R.drawable.baseline_home_24));
+
+
+                    ArrayList<DataClass> favoriteDataList = new ArrayList<>();
+
+                    SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+
+                    // Get all key-value pairs from SharedPreferences
+                    Map<String, ?> allEntries = sharedPref.getAll();
+
+                    for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                        entry.getValue();
+                        try {
+                            JSONObject jsonObj = new JSONObject(entry.getValue().toString());
+                            String recipeName = jsonObj.getString("recipeName");
+                            String recipeImage = jsonObj.getString("recipeImage");
+                            String recipeIngredients = jsonObj.getString("recipeIngredients");
+                            String recipeInstructions = jsonObj.getString("recipeInstructions");
+                            String recipeDifficulty = jsonObj.getString("recipeDifficulty");
+                            String recipePreparationTime = jsonObj.getString("recipePreparationTime");
+
+                            DataClass dataClass = new DataClass(recipeImage,recipeName,recipeIngredients,recipeInstructions,recipeDifficulty,recipePreparationTime);
+                            favoriteDataList.add(dataClass);
+
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                    favoriteAdapter =new MyAdapterFavorite(getContext(),favoriteDataList, viewF, getParentFragmentManager());
+                    recyclerView.setAdapter(favoriteAdapter);
+                }
+            }
+        });
+
         return viewF;
     }
 
@@ -167,6 +244,13 @@ public class ShowAllRecipesFregment extends Fragment {
                 searchList.add(dataClass);
             }
         }
-        adapter.searchDataList(searchList);
+        if (favoriteBtnIsPressed){
+            favoriteAdapter.searchDataList(searchList);
+        }
+        else {
+            adapter.searchDataList(searchList);
+        }
+
     }
+
 }

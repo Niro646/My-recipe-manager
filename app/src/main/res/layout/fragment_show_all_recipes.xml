@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ShowAllRecipesFregment"
+    tools:context=".Fragments.ShowAllRecipesFregment"
     android:id="@+id/show_all_recipes_fregment_resycalview">
 
     <androidx.appcompat.widget.SearchView
@@ -31,6 +31,47 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/search"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@+id/recyclerView"
+        android:layout_above="@id/recyclerView"
+        android:padding="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="20dp">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/favorite"
+                android:background="@color/lavender"
+                android:src="@drawable/baseline_favorite_border_24" />
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="50dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="20dp">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/api_btn"
+                android:background="@color/lavender"
+                android:src="@drawable/baseline_api_24" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_recipe_btn"
@@ -40,8 +81,8 @@
         android:layout_alignBottom="@+id/recyclerView"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/lavender"
         android:src="@drawable/add_24" />
 

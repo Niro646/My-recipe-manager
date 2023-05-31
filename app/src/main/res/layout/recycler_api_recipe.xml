@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="20dp"
-    android:id="@+id/recipe_card"
+    android:id="@+id/recipe_api_card"
     android:layout_marginBottom="30dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp">
@@ -21,7 +21,7 @@
 
 
             <ImageView
-                android:id="@+id/recipe_image"
+                android:id="@+id/recipe_api_image"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:scaleType="centerCrop" />
@@ -29,8 +29,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/recipe_image"
-                android:layout_alignBottom="@+id/recipe_image"
+                android:layout_alignRight="@+id/recipe_api_image"
+                android:layout_alignBottom="@+id/recipe_api_image"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="0dp"
                 android:backgroundTint="#70273333">
@@ -55,53 +55,26 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/recipe_name"
+                android:id="@+id/recipe_api_name"
                 android:hint="Name Of Recipe"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/difficulty_level"/>
-
-                <TextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/recipe_difficulty_level"
-                    android:hint=": Hard"
-                    android:layout_marginStart="3dp"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/time_simbole"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/recipe_preparation_time"
-                    android:hint=":1h"
-                    android:textSize="15dp"
-                    android:layout_marginStart="3dp"/>
-
-            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recipe_brief_description"
                 android:hint="Description:"
-                android:textSize="15dp"
-                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recipe_api_brief_description"
+                android:textSize="16dp"
+                android:layout_marginTop="3dp"
                 android:textStyle="bold"/>
         </LinearLayout>
 
